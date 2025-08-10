@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blake Single — blakesingle.com</title>
+  <meta name="description" content="Blake Single — short personal page" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0b0b0b;
+      --muted: #555;
+      --accent: #0d6efd;
+      --maxw: 760px;
+      --radius: 10px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:var(--sans);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+      box-sizing:border-box;
+    }
+
+    .card{
+      width:100%;
+      max-width:var(--maxw);
+      border-radius:var(--radius);
+      padding:36px;
+      box-sizing:border-box;
+      background:linear-gradient(180deg, rgba(13,110,253,0.03), rgba(13,110,253,0.01));
+      box-shadow: 0 8px 30px rgba(10,10,10,0.05);
+    }
+
+    h1{
+      margin:0 0 6px 0;
+      font-size:28px;
+      letter-spacing: -0.02em;
+    }
+
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    .meta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:18px;
+    }
+
+    a.btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:8px;
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(13,110,253,0.12);
+      font-weight:600;
+      transition:all .12s ease;
+      font-size:14px;
+    }
+    a.btn:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(13,110,253,0.06); }
+
+    .small{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .footer{
+      margin-top:28px;
+      border-top:1px solid rgba(0,0,0,0.04);
+      padding-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    code.email{
+      font-family:var(--mono);
+      background:rgba(0,0,0,0.02);
+      padding:6px 8px;
+      border-radius:6px;
+      font-size:13px;
+    }
+
+    @media (max-width:520px){
+      .card{ padding:22px; }
+      h1{ font-size:22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" role="main">
+      <h1>Blake Single</h1>
+      <p class="lead">I build things. Small apps, property models and simple websites. Based in Sydney.</p>
+
+      <div class="meta" aria-hidden="false">
+        <a class="btn" href="mailto:hi@blakesingle.com">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/blakesingle" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/blakesingle" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div class="footer" aria-label="contact">
+        <div class="small">Available for consults and short projects.</div>
+        <div class="small">Email: <code class="email" id="emailText">hi@blakesingle.com</code></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const emailEl = document.getElementById('emailText');
+      emailEl.style.cursor = 'pointer';
+      emailEl.title = 'Click to copy';
+      emailEl.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(emailEl.textContent.trim());
+          const old = emailEl.textContent;
+          emailEl.textContent = 'Copied!';
+          setTimeout(()=> emailEl.textContent = old, 1200);
+        } catch (e) {
+          const range = document.createRange();
+          range.selectNodeContents(emailEl);
+          const sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
